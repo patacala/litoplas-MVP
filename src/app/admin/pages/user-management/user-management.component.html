@@ -1,0 +1,42 @@
+<div class="container">
+  <h1>Administracion de usuarios</h1>
+
+  <div *ngIf="!urlParams.userID" class="">
+    <h1>Detalle de usuarios</h1>
+    <table>
+      <tr>
+        <th>Nombre</th>
+        <th>Usuario</th>
+        <th>Activo</th>
+      </tr>
+      <tbody>
+        <tr>
+          <td>Juan gonzales</td>
+          <td>JUANCHO1</td>
+          <td>true</td>
+        </tr>
+        <tr>
+          <td>KAren paez</td>
+          <td>KAREN!</td>
+          <td>false</td>
+        </tr>
+        <tr>
+          <td>Lorena palau</td>
+          <td>LORENA</td>
+          <td>true</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div *ngIf="urlParams.userID">
+    <h1>Detalle de usuario</h1>
+    <ul>
+      <li>Luis Garcia</li>
+      <li>LUIS@1</li>
+      <li>false</li>
+    </ul>
+  </div>
+
+</div>
+
+{{queryParams | json}}

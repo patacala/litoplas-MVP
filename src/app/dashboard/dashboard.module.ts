@@ -6,11 +6,10 @@ import { HomeComponent } from './pages/home/home.component';
 import { SharedModule } from '../shared/shared.module';
 import { DashboardComponent } from './pages/dashboard/dashboard.component';
 
-
 @NgModule({
   declarations: [
     HomeComponent,
-    DashboardComponent
+    DashboardComponent,
   ],
   imports: [
     CommonModule,
