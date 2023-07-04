@@ -2,7 +2,7 @@
     <h1 class="title">Administrador de permisos</h1>
 
     <div class="permissionsForm">
-        <form (ngSubmit)="processData()" #formPermission="ngForm">
+        <form (ngSubmit)="processData(); formPermission.reset(permissionDefault)" #formPermission="ngForm">
           <div class="form-group">
             <label for="">Nombre de permiso</label>
             <input 
@@ -31,8 +31,23 @@
         </form>
     </div>
     <div class="permissionList">
-
+      <table class="customTable">
+        <thead>
+          <tr>
+            <th>Permiso</th>
+            <th>Descripcion</th>
+            <th>Estado</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let permission of permissionsData">
+            <td>{{permission.name}}</td>
+            <td>{{permission.description}}</td>
+            <td>{{permission.isActive ? 'Activo' : 'Desactivado' }}</td>
+          </tr>
+        </tbody>
+      </table>
     </div>
 </section>
 
-{{ permissions | json }}
+{{formPermission.submitted}}

@@ -18,19 +18,22 @@ export class PermissionsManagementComponent implements OnInit {
     isActive: false
   };
 
-  permission: Permission = this.permissionDefault;
+  permission: Permission = {
+    name: '',
+    description: '',
+    isActive: true
+  };
 
-  permissions: Permission[] = [];
+  permissionsData: Permission[] = [];
 
   constructor() { }
 
   ngOnInit(): void {
   }
 
+
   processData() {
-   this.permissions.push(this.permission);
-   this.permission.name = ''; 
-   this.permission.description= ''; 
+   this.permissionsData.push({...this.permission});
   }
 
 }

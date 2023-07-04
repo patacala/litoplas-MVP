@@ -1,42 +1,90 @@
-<div class="container">
-  <h1>Administracion de usuarios</h1>
+<section class="wrapper">
+  <h1 class="title">Administrador de permisos</h1>
 
-  <div *ngIf="!urlParams.userID" class="">
-    <h1>Detalle de usuarios</h1>
-    <table>
-      <tr>
-        <th>Nombre</th>
-        <th>Usuario</th>
-        <th>Activo</th>
-      </tr>
+  <div class="userForm">
+      <form [formGroup]="formUser" (ngSubmit)="processData()" >
+        <div class="form-group">
+          <label for="">Nombre</label>
+          <input 
+            type="text" 
+            class="form-control"
+            name="name"
+            formControlName="name"
+            >
+            <span [hidden]="getFormControl('name')?.valid || getFormControl('name')?.pristine" class="hint">Campo requerido</span>
+            <!-- <span [hidden]="name?.valid || name?.pristine" class="hint">Campo requerido</span> -->
+        </div>
+        <div class="form-group">
+          <label for="">Email</label>
+          <input 
+            type="email" 
+            class="form-control"
+            name="email"
+            formControlName="email"
+            required>
+            <span [hidden]="getFormControl('email')?.valid || getFormControl('email')?.pristine" class="hint">
+              {{ getFormControl('email')?.errors?.['required'] && 'Campo requerido' }}
+              {{ getFormControl('email')?.errors?.['pattern'] && 'Formato de email errado' }}
+            </span>
+            <!-- <span [hidden]="email.valid || email.pristine || !email.errors?.['email']" class="hint">Formato email incorrecto</span> -->
+        </div>
+        <div class="form-group">
+          <label for="">Telefono</label>
+          <input 
+            type="text" 
+            class="form-control"
+            name="phone"
+            formControlName="phone"
+            required>
+            <span [hidden]="getFormControl('phone')?.valid || getFormControl('phone')?.pristine" class="hint">
+              {{ getFormControl('phone')?.errors?.['required'] && 'Campo requerido' }}<br>
+              {{ getFormControl('phone')?.errors?.['pattern'] && 'Solo caracteres numericos' }}<br>
+              {{ getFormControl('phone')?.errors?.['minlength'] && 'Minimo 7 caracteres' }}
+              {{ getFormControl('phone')?.errors?.['maxlength'] && 'maximo 10 caracteres' }}
+            </span>
+            <!-- <span *ngIf="!phone.valid && !phone.pristine" class="hint">Campo requerido</span> -->
+        </div>
+        <div class="form-group">
+          <label for="">Contraseña</label>
+          <input 
+            type="text" 
+            class="form-control"
+            name="password"
+            formControlName="password"
+            required>
+            <span [hidden]="getFormControl('password')?.valid || getFormControl('password')?.pristine" class="hint">
+              Campo requerido
+            </span>
+            <!-- <span *ngIf="!password.valid && !password.pristine" class="hint">Campo requerido</span> -->
+        </div>
+        <div class="form-group">
+          <button [disabled]="formUser.invalid" >Guardar</button>
+        </div>
+      </form>
+  </div>
+  <div class="userList">
+    <table class="customTable">
+      <thead>
+        <tr>
+          <th>Nombre</th>
+          <th>Telefono</th>
+          <th>Correo Electronico</th>
+          <th>Contraseña</th>
+        </tr>
+      </thead>
       <tbody>
-        <tr>
-          <td>Juan gonzales</td>
-          <td>JUANCHO1</td>
-          <td>true</td>
-        </tr>
-        <tr>
-          <td>KAren paez</td>
-          <td>KAREN!</td>
-          <td>false</td>
-        </tr>
-        <tr>
-          <td>Lorena palau</td>
-          <td>LORENA</td>
-          <td>true</td>
+        <tr *ngFor="let user of userData">
+          <td>{{user.name}}</td>
+          <td>{{user.phone}}</td>
+          <td>{{user.email}}</td>
+          <td>{{user.password}}</td>
         </tr>
       </tbody>
     </table>
   </div>
-  <div *ngIf="urlParams.userID">
-    <h1>Detalle de usuario</h1>
-    <ul>
-      <li>Luis Garcia</li>
-      <li>LUIS@1</li>
-      <li>false</li>
-    </ul>
-  </div>
+</section>
 
-</div>
+{{formUser.valid}}
 
-{{queryParams | json}}
+<!-- {{phone.valid}}
+{{password.valid}} -->
