@@ -7,13 +7,15 @@ import { CircleMenuComponent } from './common/circle-menu/circle-menu.component'
 import { HeaderComponent } from './header/header.component'
 import { FooterComponent } from './footer/footer.component';
 import { BodyComponent } from './body/body.component';
+import { CustomTableComponent } from './common/custom-table/custom-table.component';
 
 @NgModule({
   declarations: [
     HeaderComponent,
     FooterComponent,
     BodyComponent,
-    CircleMenuComponent
+    CircleMenuComponent,
+    CustomTableComponent
   ],
   imports: [
     CommonModule,
@@ -24,7 +26,8 @@ import { BodyComponent } from './body/body.component';
     HeaderComponent,
     FooterComponent,
     BodyComponent,
-    CircleMenuComponent
+    CircleMenuComponent,
+    CustomTableComponent
   ]
 })
 export class SharedModule { }

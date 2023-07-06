@@ -1,0 +1,15 @@
+<div class="ItemList">
+  <table class="customTable">
+    <thead>
+      <tr>
+        <th *ngFor="let columnHead of tableData.headers ">{{columnHead.description}}</th>
+      </tr>
+    </thead>
+    <tbody>
+      <!-- <tr *ngFor="let user of userData"> -->
+      <tr *ngFor="let columnData of tableData.dataColumns">
+        <td *ngFor="let columnHead of tableData.headers">{{columnData[columnHead.field]}}</td>
+      </tr>  
+    </tbody>
+  </table>
+</div>

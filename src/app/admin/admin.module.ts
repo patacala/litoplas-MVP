@@ -6,19 +6,23 @@ import { PermissionsManagementComponent } from './pages/permissions-management/p
 import { UserManagementComponent } from './pages/user-management/user-management.component';
 import { AdminManagementComponent } from './pages/admin-management/admin-management.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { SharedModule } from '../shared/shared.module';
+import { TableInfoComponent } from './components/table-info/table-info.component';
 
 
 @NgModule({
   declarations: [
     PermissionsManagementComponent,
     UserManagementComponent,
-    AdminManagementComponent
+    AdminManagementComponent,
+    TableInfoComponent
   ],
   imports: [
     CommonModule,
     AdminRoutingModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    SharedModule
   ]
 })
 export class AdminModule { }

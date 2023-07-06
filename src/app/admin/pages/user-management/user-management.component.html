@@ -62,29 +62,7 @@
         </div>
       </form>
   </div>
-  <div class="userList">
-    <table class="customTable">
-      <thead>
-        <tr>
-          <th>Nombre</th>
-          <th>Telefono</th>
-          <th>Correo Electronico</th>
-          <th>Contraseña</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr *ngFor="let user of userData">
-          <td>{{user.name}}</td>
-          <td>{{user.phone}}</td>
-          <td>{{user.email}}</td>
-          <td>{{user.password}}</td>
-        </tr>
-      </tbody>
-    </table>
-  </div>
+  <app-table-info></app-table-info>
+  <app-custom-table [tableData]="tableData"></app-custom-table>
 </section>
 
-{{formUser.valid}}
-
-<!-- {{phone.valid}}
-{{password.valid}} -->

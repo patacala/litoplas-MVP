@@ -13,6 +13,17 @@ interface User {
   password:string;
 }
 
+interface TableData {
+  headers: DataKeys[];
+  dataColumns: any[]
+}
+
+// { description: 'Nombre de usuario' , field: 'name' }
+interface DataKeys {
+  description: string;
+  field: string
+}
+
 @Component({
   selector: 'app-user-management',
   templateUrl: './user-management.component.html',
@@ -27,7 +38,8 @@ export class UserManagementComponent implements OnInit {
       this.urlParams.userID = params['userID']
     )
     this.route.queryParams.subscribe(params => this.queryParams = {...params});
-    console.log('query params',  this.queryParams);
+
+    this.tableData.dataColumns = this.userService.getUsers();
   }
   
   urlParams: UrlParams = {
@@ -40,6 +52,16 @@ export class UserManagementComponent implements OnInit {
   }
 
   userData: User[] = [];
+
+  tableData: TableData = {
+    headers:[
+      {description: 'Nombre de usuario', field: 'name'},
+      {description: 'Telefono', field: 'phone'},
+      {description: 'Correo electronico', field: 'email'},
+      {description: 'Contraseña', field: 'password'},
+    ],
+    dataColumns:[]
+  } 
 
   formUser = this.fb.group({
     "name" : ['', Validators.required],
@@ -83,10 +105,11 @@ export class UserManagementComponent implements OnInit {
 
 
   processData() {
-    const tempUser: User = JSON.parse(JSON.stringify(this.formUser.value))
-    this.userData.push(tempUser)   
+    const tempUser: User = JSON.parse(JSON.stringify(this.formUser.value));
+    this.userService.saveUser(tempUser);
+    // this.userData.push(tempUser);
+    this.tableData.dataColumns = this.userService.userdata;   
     console.log(this.formUser);
-    console.log(this.userService.userdata, 'Dataaaaaaaaaaaaaaa');
   }
   
 }
