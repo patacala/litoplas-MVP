@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, OnChanges, OnDestroy, SimpleChanges, ChangeDetectionStrategy } from '@angular/core';
 import { TableData } from '../../domain'
 
 // interface TableData {
@@ -16,9 +16,10 @@ import { TableData } from '../../domain'
 @Component({
   selector: 'app-custom-table',
   templateUrl: './custom-table.component.html',
-  styleUrls: ['./custom-table.component.css']
+  styleUrls: ['./custom-table.component.css'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class CustomTableComponent implements OnInit {
+export class CustomTableComponent implements OnChanges, OnInit, OnDestroy {
 
   @Input() tableData: TableData = {
     headers: [],
@@ -27,7 +28,21 @@ export class CustomTableComponent implements OnInit {
   
   constructor() { }
 
+  ngOnChanges(changes: SimpleChanges): void {
+      console.log('Changes ->', changes)
+  }
+
   ngOnInit(): void {
+    console.log('Init')
+  }
+
+  ngOnDestroy(): void {
+    console.log('Destroy')
+  }
+
+  countRender(): boolean {
+    console.log('Render Table')
+    return true;
   }
 
 }

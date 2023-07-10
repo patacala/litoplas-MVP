@@ -13,6 +13,6 @@ export class TableInfoComponent implements OnInit {
   constructor(private userService: UserService) { }
 
   ngOnInit(): void {
-    this.amountUser = this.userService.getuserdata.length;
+    // this.amountUser = this.userService.getuserdata.length;
   }
 }

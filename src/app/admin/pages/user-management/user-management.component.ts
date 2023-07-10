@@ -11,6 +11,7 @@ interface User {
   email: string;
   phone: string;
   password:string;
+  _id?: string;
 }
 
 interface TableData {
@@ -30,7 +31,8 @@ interface DataKeys {
   styleUrls: ['./user-management.component.css']
 })
 export class UserManagementComponent implements OnInit {
-
+  users: User[] = [];
+  
   constructor(private route: ActivatedRoute, private fb: FormBuilder, private userService: UserService) {}
   
   ngOnInit(): void {
@@ -39,7 +41,11 @@ export class UserManagementComponent implements OnInit {
     )
     this.route.queryParams.subscribe(params => this.queryParams = {...params});
 
-    this.tableData.dataColumns = this.userService.getUsers();
+    this.getUsers()
+  }
+
+  setDataTable(): void {
+    this.tableData = { ...this.tableData, dataColumns: this.users }
   }
   
   urlParams: UrlParams = {
@@ -51,7 +57,6 @@ export class UserManagementComponent implements OnInit {
     return this.formUser.get('name');
   }
 
-  userData: User[] = [];
 
   tableData: TableData = {
     headers:[
@@ -106,10 +111,25 @@ export class UserManagementComponent implements OnInit {
 
   processData() {
     const tempUser: User = JSON.parse(JSON.stringify(this.formUser.value));
-    this.userService.saveUser(tempUser);
+    // this.userService.saveUser(tempUser);
     // this.userData.push(tempUser);
-    this.tableData.dataColumns = this.userService.userdata;   
     console.log(this.formUser);
+    // this.tableData = { ...this.tableData, dataColumns: this.userService.userdata };   
   }
+
+  getUsers():void {
+    this.userService.getUsers().subscribe(users => {
+      this.users = users;
+      this.setDataTable();
+    });
+  }
+
+  addUser(): void {
+    const tempUser: User = JSON.parse(JSON.stringify(this.formUser.value));
+    this.userService.addNewUser(tempUser).subscribe(res => {
+      this.getUsers();
+    })
+  }
+
   
 }

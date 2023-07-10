@@ -41,7 +41,7 @@
         </thead>
         <tbody>
           <tr *ngFor="let permission of permissionsData">
-            <td>{{permission.name}}</td>
+            <td>{{permission.name | textTrasform: '-'}}</td>
             <td>{{permission.description}}</td>
             <td>{{permission.isActive ? 'Activo' : 'Desactivado' }}</td>
           </tr>

@@ -3,6 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { AdminModule } from '../admin/admin.module';
 import { AuthModule } from '../auth/auth.module';
 import { DashboardModule } from '../dashboard/dashboard.module';
+import { AuthGuard } from '../guards/auth.guard';
 import { MainLayoutComponent } from './main-layout/main-layout.component';
 import { UserLayoutComponent } from './user-layout/user-layout.component';
 
@@ -13,7 +14,7 @@ const routes: Routes = [
     pathMatch:'full'
   },
   {
-    path: '',
+    path: '', 
     component: UserLayoutComponent,
     children:[
       {path: 'dashboard', loadChildren: () => DashboardModule },
@@ -26,7 +27,8 @@ const routes: Routes = [
     children:[
       {path: 'login', loadChildren: () => AuthModule }
     ]
-  }
+  },
+  { path: '**', pathMatch:'full', redirectTo: 'login'}
 ];
 
 @NgModule({

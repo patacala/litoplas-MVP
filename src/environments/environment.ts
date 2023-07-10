@@ -3,7 +3,8 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  production: false
+  production: false,
+  api:'https://crudcrud.com/api/ef4613a1b35f45e3a41aa48a6663f5c7'
 };
 
 /*

@@ -8,6 +8,7 @@ import { AdminManagementComponent } from './pages/admin-management/admin-managem
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SharedModule } from '../shared/shared.module';
 import { TableInfoComponent } from './components/table-info/table-info.component';
+import { TextTrasformPipe } from '../pipes/text-trasform.pipe';
 
 
 @NgModule({
@@ -15,7 +16,8 @@ import { TableInfoComponent } from './components/table-info/table-info.component
     PermissionsManagementComponent,
     UserManagementComponent,
     AdminManagementComponent,
-    TableInfoComponent
+    TableInfoComponent,
+    TextTrasformPipe
   ],
   imports: [
     CommonModule,
