@@ -9,6 +9,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SharedModule } from '../shared/shared.module';
 import { TableInfoComponent } from './components/table-info/table-info.component';
 import { TextTrasformPipe } from '../pipes/text-trasform.pipe';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 
 @NgModule({
@@ -24,7 +25,8 @@ import { TextTrasformPipe } from '../pipes/text-trasform.pipe';
     AdminRoutingModule,
     FormsModule,
     ReactiveFormsModule,
-    SharedModule
+    SharedModule,
+    FontAwesomeModule
   ]
 })
 export class AdminModule { }

@@ -8,7 +8,17 @@
     <tbody>
       <!-- <tr *ngFor="let user of userData"> -->
       <tr *ngFor="let columnData of tableData.dataColumns">
-        <td *ngFor="let columnHead of tableData.headers">{{columnData[columnHead.field]}}</td>
+        <td *ngFor="let columnHead of tableData.headers"> 
+          <span class="actions" *ngIf="columnHead.field === 'actions'">
+            <fa-icon (click)="onUpdateClick(columnData)" class="icon" [icon]="getIcon('faPencil')"></fa-icon>
+            <fa-icon (click)="onDeleteClick(columnData)" class="icon" [icon]="getIcon('faTrash')"></fa-icon>
+          </span>
+          <span *ngIf="columnHead.field !== 'actions'">
+            {{columnData[columnHead.field]}} 
+          </span>
+
+          
+        </td>
       </tr>  
     </tbody>
   </table>

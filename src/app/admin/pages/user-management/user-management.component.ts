@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { UserService } from 'src/app/services/user.service';
+import { faTrash, faPencil, IconDefinition } from '@fortawesome/free-solid-svg-icons';
 interface UrlParams {
   userID: string
 }
@@ -23,6 +24,11 @@ interface TableData {
 interface DataKeys {
   description: string;
   field: string
+}
+
+const icons: any = {
+  faCoffee: faTrash,
+  faPencil: faPencil
 }
 
 @Component({
@@ -64,6 +70,7 @@ export class UserManagementComponent implements OnInit {
       {description: 'Telefono', field: 'phone'},
       {description: 'Correo electronico', field: 'email'},
       {description: 'Contraseña', field: 'password'},
+      {description: 'Acciones', field:'actions'}
     ],
     dataColumns:[]
   } 
@@ -85,7 +92,8 @@ export class UserManagementComponent implements OnInit {
         Validators.maxLength(10),
       ]
     ],
-    "password" : ['', Validators.required]
+    "password" : ['', Validators.required],
+    "_id": ['']
   })
 
   // formUser: FormGroup = new FormGroup({
@@ -126,10 +134,23 @@ export class UserManagementComponent implements OnInit {
 
   addUser(): void {
     const tempUser: User = JSON.parse(JSON.stringify(this.formUser.value));
-    this.userService.addNewUser(tempUser).subscribe(res => {
-      this.getUsers();
+    this.userService.addNewUser(tempUser).subscribe(user => {
+      this.users.push(user)
+      this.setDataTable()
     })
   }
 
   
+
+  onDeleteTable(item: User){
+    console.log(item, 'delete on user management');
+  }
+
+  onUpdateTable(item: User){
+    console.log(item, 'update on user management');
+  }
+
+
+  
+
 }

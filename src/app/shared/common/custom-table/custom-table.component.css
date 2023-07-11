@@ -18,3 +18,21 @@ table.customTable td, table.customTable th {
 table.customTable thead {
   background-color: #7ea8f8;
 }
+
+table.customTable td .actions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  cursor: pointer;
+}
+
+table.customTable td .actions fa-icon {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 35px;
+  height: 35px;
+  background-color: #7ea8f8;
+  border-radius: 5px;
+  color: #fff;
+}
