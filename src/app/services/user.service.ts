@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
 
 interface User {
@@ -15,6 +15,15 @@ interface User {
 })
 export class UserService {
   private readonly API_URL = `${environment.api}/users`;
+  private countUser$ = new BehaviorSubject<number>(0);
+
+  get totalUsers(): Observable<number> {
+    return this.countUser$;
+  }
+
+  setTotalUsers(total: number) {
+    this.countUser$.next(total);
+  }
   
   constructor(private readonly http: HttpClient) { }
   
@@ -41,7 +50,8 @@ export class UserService {
   // }
 
   addNewUser(user: User): Observable<User> {
-    const body = user;
+    const body = {...user};
+    delete body._id
     return this.http.post<User>(this.API_URL,body);
   }
 

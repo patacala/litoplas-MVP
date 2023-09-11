@@ -52,6 +52,7 @@ export class UserManagementComponent implements OnInit {
 
   setDataTable(): void {
     this.tableData = { ...this.tableData, dataColumns: this.users }
+    this.userService.setTotalUsers(this.users.length);
   }
   
   urlParams: UrlParams = {

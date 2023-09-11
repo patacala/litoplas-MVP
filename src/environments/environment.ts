@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  api:'https://crudcrud.com/api/3bc32ea913714aacbd4593b4af2f367e'
+  api:'http://localhost:3000/api'
 };
 
 /*

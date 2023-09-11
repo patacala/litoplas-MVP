@@ -8,11 +8,13 @@ import { UserService } from 'src/app/services/user.service';
 })
 export class TableInfoComponent implements OnInit {
 
-  amountUser: number = 0
+  totalUsers: number = 0
 
   constructor(private userService: UserService) { }
 
   ngOnInit(): void {
-    // this.amountUser = this.userService.getuserdata.length;
+    this.userService.totalUsers.subscribe((total: number) => {
+      this.totalUsers = total;
+    });
   }
 }
